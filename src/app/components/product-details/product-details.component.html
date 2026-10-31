@@ -1,0 +1,87 @@
+@if (product(); as product) {
+  <main class="details-page">
+
+    <section class="details-layout">
+
+      <div class="details-image-wrap">
+        <img
+          [src]="product.image"
+          [alt]="product.name"
+          class="details-image"
+        />
+      </div>
+
+      <div class="details-content">
+
+        <span class="details-category">
+          {{ product.category }}
+        </span>
+
+        <h1>{{ product.name }}</h1>
+
+        <div
+          class="details-rating"
+          aria-label="Product rating"
+        >
+          <span class="stars">&#9733;</span>
+          <strong>4.5</strong>
+          <span>Customer rating</span>
+        </div>
+
+        <div class="details-price">
+          <strong>${{ product.price }}</strong>
+        </div>
+
+        <p class="details-description">
+          {{ product.description }}
+        </p>
+
+        <div class="details-stock">
+          <span class="stock-dot"></span>
+
+          {{ product.stock }} available in stock
+        </div>
+
+        <button
+          type="button"
+          class="add-cart-btn"
+          (click)="addToCart(product)"
+        >
+          Add to Cart
+        </button>
+
+      </div>
+
+    </section>
+
+  </main>
+
+} @else if (productNotFound()) {
+
+  <main class="details-empty">
+
+    <h1>Product not found</h1>
+
+    <p>
+      We could not find the product you are looking for.
+    </p>
+
+    <a
+      class="back-link"
+      [routerLink]="['/categories']"
+    >
+      Browse categories
+    </a>
+
+  </main>
+
+} @else {
+
+  <main
+    class="details-empty"
+    aria-live="polite"
+  >
+    <p>Loading product details...</p>
+  </main>
+
+}

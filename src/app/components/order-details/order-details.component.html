@@ -1,0 +1,459 @@
+<div class="order-details-page">
+
+  <div class="order-details-container">
+
+    <!-- Header -->
+
+    <header class="page-header">
+
+      <button
+        type="button"
+        class="back-button"
+        (click)="backToOrders()"
+      >
+
+        <lucide-icon
+          [img]="ArrowLeft"
+          [size]="18"
+        />
+
+        <span>
+          Back to Orders
+        </span>
+
+      </button>
+
+
+      @if (order(); as currentOrder) {
+
+        <div class="header-content">
+
+          <p class="eyebrow">
+            SHOPLY
+          </p>
+
+          <h1>
+            Order Details
+          </h1>
+
+          <p class="description">
+            Order #{{ currentOrder._id }}
+          </p>
+
+        </div>
+
+      }
+
+    </header>
+
+
+    <!-- Loading -->
+
+    @if (loading()) {
+
+      <div class="loading-state">
+
+        <div class="loading-spinner"></div>
+
+        <h2>
+          Loading order...
+        </h2>
+
+        <p>
+          Please wait while we fetch your order details.
+        </p>
+
+      </div>
+
+    }
+
+
+    <!-- Error -->
+
+    @else if (errorMessage()) {
+
+      <div class="error-box">
+
+        <div class="error-content">
+
+          <h2>
+            Unable to load order
+          </h2>
+
+          <p>
+            {{ errorMessage() }}
+          </p>
+
+        </div>
+
+        <button
+          type="button"
+          (click)="backToOrders()"
+        >
+          Back to Orders
+        </button>
+
+      </div>
+
+    }
+
+
+    <!-- Order Details -->
+
+  @if (order(); as currentOrder) {
+
+  <article class="order-card">
+
+    <!-- Order Header -->
+
+    <div class="order-top">
+
+      <div class="order-reference">
+
+        <div class="order-icon">
+
+          <lucide-icon
+            [img]="Package"
+            [size]="22"
+          />
+
+        </div>
+
+        <div>
+
+          <span class="small-label">
+            Order Number
+          </span>
+
+          <strong>
+            #{{ currentOrder._id }}
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <div
+        class="order-status"
+        [class]="getStatusClass(currentOrder.status)"
+      >
+
+        <span class="status-dot"></span>
+
+        {{ getStatusLabel(currentOrder.status) }}
+
+      </div>
+
+    </div>
+
+
+    <div class="divider"></div>
+
+
+    <!-- Order Summary -->
+
+    <section class="order-summary">
+
+      <div class="summary-item">
+
+        <span class="small-label">
+          Order Date
+        </span>
+
+        <strong>
+          {{
+            currentOrder.createdAt
+              | date:'dd MMM yyyy, HH:mm'
+          }}
+        </strong>
+
+      </div>
+
+
+      <div class="summary-item">
+
+        <span class="small-label">
+          Items
+        </span>
+
+        <strong>
+          {{ getItemsCount(currentOrder) }}
+        </strong>
+
+      </div>
+
+
+      <div class="summary-item">
+
+        <span class="small-label">
+          Order Status
+        </span>
+
+        <strong>
+          {{ getStatusLabel(currentOrder.status) }}
+        </strong>
+
+      </div>
+
+    </section>
+
+
+    <div class="divider"></div>
+
+
+    <!-- Products -->
+
+    <section class="section">
+
+      <div class="section-header">
+
+        <span class="section-eyebrow">
+          ORDER
+        </span>
+
+        <h2>
+          Products
+        </h2>
+
+      </div>
+
+
+      <div class="products-list">
+
+        @for (
+          item of currentOrder.items;
+          track item.productId + '-' + $index
+        ) {
+
+          <div class="product-row">
+
+            <img
+              [src]="item.image"
+              [alt]="item.name"
+              class="product-image"
+            />
+
+            <div class="product-info">
+
+              <strong>
+                {{ item.name }}
+              </strong>
+
+              <span>
+                Quantity: {{ item.quantity }}
+              </span>
+
+              <span>
+                Unit Price:
+                {{
+                  item.price
+                    | number:'1.2-2'
+                }}
+                EGP
+              </span>
+
+            </div>
+
+            <div class="product-total">
+
+              <span>
+                {{
+                  item.price
+                    | number:'1.2-2'
+                }}
+                ×
+                {{ item.quantity }}
+              </span>
+
+              <strong>
+                {{
+                  item.price * item.quantity
+                    | number:'1.2-2'
+                }}
+                EGP
+              </strong>
+
+            </div>
+
+          </div>
+
+        }
+
+      </div>
+
+    </section>
+
+
+    <div class="divider"></div>
+
+
+    <!-- Shipping -->
+
+    <section class="section">
+
+      <div class="section-heading">
+
+        <div class="section-icon">
+
+          <lucide-icon
+            [img]="MapPin"
+            [size]="19"
+          />
+
+        </div>
+
+        <div>
+
+          <span class="section-eyebrow">
+            DELIVERY
+          </span>
+
+          <h2>
+            Shipping Address
+          </h2>
+
+        </div>
+
+      </div>
+
+
+      <div class="shipping-card">
+
+        <strong>
+          {{ currentOrder.shippingAddress.fullName }}
+        </strong>
+
+        <span>
+          {{ currentOrder.shippingAddress.phone }}
+        </span>
+
+        <span>
+          {{ currentOrder.shippingAddress.address }}
+        </span>
+
+        <span>
+          {{ currentOrder.shippingAddress.city }}
+        </span>
+
+      </div>
+
+    </section>
+
+
+    <div class="divider"></div>
+
+
+    <!-- Payment -->
+
+    <section class="section">
+
+      <div class="section-heading">
+
+        <div class="section-icon">
+
+          <lucide-icon
+            [img]="
+              getPaymentIcon(
+                currentOrder.paymentMethod
+              )
+            "
+            [size]="19"
+          />
+
+        </div>
+
+        <div>
+
+          <span class="section-eyebrow">
+            PAYMENT
+          </span>
+
+          <h2>
+            Payment Information
+          </h2>
+
+        </div>
+
+      </div>
+
+
+      <div class="payment-grid">
+
+        <div class="payment-item">
+
+          <span class="small-label">
+            Payment Method
+          </span>
+
+          <strong>
+            {{
+              getPaymentLabel(
+                currentOrder.paymentMethod
+              )
+            }}
+          </strong>
+
+        </div>
+
+
+        <div class="payment-item">
+
+          <span class="small-label">
+            Payment Status
+          </span>
+
+          <span
+            class="payment-badge"
+            [class]="
+              getPaymentStatusClass(
+                currentOrder.paymentStatus
+              )
+            "
+          >
+
+            <span class="status-dot"></span>
+
+            {{
+              getStatusLabel(
+                currentOrder.paymentStatus
+              )
+            }}
+
+          </span>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <div class="divider"></div>
+
+
+    <!-- Total -->
+
+    <section class="total-section">
+
+      <span>
+        Order Total
+      </span>
+
+      <strong>
+        {{
+          currentOrder.total
+            | number:'1.2-2'
+        }}
+        EGP
+      </strong>
+
+    </section>
+
+  </article>
+
+}
+
+  </div>
+
+</div>

@@ -1,0 +1,1024 @@
+/* =========================================================
+   Navbar
+========================================================= */
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 150px;
+  height: 58px;
+
+  flex-shrink: 0;
+
+  text-decoration: none;
+
+  overflow: hidden;
+
+  border-radius: 10px;
+
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.logo:hover {
+  transform: translateY(-1px);
+  opacity: 0.9;
+}
+
+.logo-image {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  object-position: center;
+
+  mix-blend-mode: multiply;
+}
+
+:host-context(.dark) .logo-image {
+  filter: invert(1);
+  mix-blend-mode: screen;
+}
+
+.navbar {
+  width: 100%;
+
+  background-color: var(--bg-primary);
+  border-bottom: 1px solid var(--border-color);
+
+  position: sticky;
+  top: 0;
+
+  z-index: 1000;
+
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease;
+}
+
+
+/* =========================================================
+   Navbar Container
+========================================================= */
+
+.navbar-container {
+  max-width: 1200px;
+
+  margin: 0 auto;
+  padding: 0 24px;
+
+  min-height: 72px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 32px;
+}
+
+
+/* =========================================================
+   Logo
+========================================================= */
+
+.logo {
+  color: var(--text-primary);
+
+  font-size: 24px;
+  font-weight: 700;
+
+  text-decoration: none;
+  white-space: nowrap;
+
+  transition: color 0.3s ease;
+}
+
+
+/* =========================================================
+   Navigation
+========================================================= */
+
+.nav-links {
+  display: flex;
+  align-items: center;
+
+  gap: 32px;
+
+  list-style: none;
+
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  position: relative;
+
+  color: var(--text-secondary);
+
+  font-size: 22px;
+  font-weight: 500;
+
+  text-decoration: none;
+
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: var(--text-primary);
+}
+
+.nav-links a::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  bottom: -8px;
+
+  width: 0;
+  height: 2px;
+
+  background-color: var(--text-primary);
+
+  transition: width 0.2s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+
+/* =========================================================
+   Actions
+========================================================= */
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+}
+
+.nav-actions button {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+
+  background: transparent;
+
+  cursor: pointer;
+
+  border-radius: 50%;
+
+  color: var(--text-primary);
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.nav-actions button:hover {
+  background-color: var(--bg-secondary);
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   Theme Toggle
+========================================================= */
+
+.theme-btn {
+  position: relative;
+}
+
+
+/* =========================================================
+   Cart
+========================================================= */
+
+.cart-btn {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+
+  gap: 9px;
+
+  width: auto;
+  height: auto;
+
+  padding: 6px 10px;
+
+  border: 1px solid var(--border-color) !important;
+  border-radius: 8px !important;
+
+  background: transparent !important;
+
+  color: var(--text-primary);
+
+  text-align: right;
+
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.cart-btn:hover {
+  background: var(--bg-secondary) !important;
+  border-color: var(--accent-color) !important;
+}
+
+.cart-btn lucide-icon {
+  transition:
+    transform 0.25s ease,
+    color 0.25s ease;
+}
+
+.cart-btn:hover lucide-icon {
+  transform: translateY(-2px) scale(1.08);
+}
+
+
+/* =========================================================
+   User Profile
+========================================================= */
+
+/* =========================================================
+   User Profile
+========================================================= */
+
+.nav-actions .user-profile {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+
+  gap: 10px;
+
+  width: auto;
+  height: 44px;
+
+  padding: 0 12px 0 6px;
+
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+
+  background: transparent;
+
+  color: var(--text-primary);
+
+  cursor: pointer;
+  white-space: nowrap;
+
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.nav-actions .user-profile:hover {
+  background: var(--bg-secondary);
+  border-color: var(--accent-color);
+  transform: translateY(-1px);
+}
+
+.nav-actions .user-profile:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+/* Avatar (أول حرف من الاسم) */
+.user-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 32px;
+  height: 32px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background-color: var(--accent-color);
+  color: var(--accent-text);
+
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.user-profile-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 1px;
+
+  line-height: 1.2;
+  text-align: left;
+}
+
+.user-name {
+  max-width: 110px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  color: var(--text-primary);
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.view-profile {
+  color: var(--text-secondary);
+
+  font-size: 11px;
+  font-weight: 400;
+
+  transition: color 0.2s ease;
+}
+
+.nav-actions .user-profile:hover .view-profile {
+  color: var(--text-primary);
+}
+
+/* السهم */
+.user-profile > lucide-icon {
+  flex-shrink: 0;
+
+  color: var(--text-secondary);
+
+  transition: transform 0.2s ease;
+}
+
+.user-profile[aria-expanded="true"] > lucide-icon {
+  transform: rotate(180deg);
+}
+
+.user-profile:hover .view-profile {
+  color: var(--text-primary);
+}
+
+
+/* =========================================================
+   Cart Count
+========================================================= */
+
+.cart-count {
+  position: absolute;
+
+  top: 0;
+  right: -2px;
+
+  min-width: 18px;
+  height: 18px;
+
+  padding: 0 4px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: var(--accent-color);
+  color: var(--accent-text);
+
+  border: 2px solid var(--bg-primary);
+
+  border-radius: 999px;
+
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1;
+
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.cart-btn:hover .cart-count {
+  transform: scale(1.12);
+}
+
+
+/* =========================================================
+   Notifications
+========================================================= */
+
+.notification-btn {
+  position: relative;
+
+  overflow: visible;
+}
+
+.notification-btn lucide-icon {
+  transition:
+    transform 0.25s ease,
+    color 0.25s ease;
+}
+
+.notification-btn:hover lucide-icon {
+  transform: scale(1.08);
+}
+
+
+/* =========================================================
+   Notification Badge
+========================================================= */
+
+.notification-count {
+  position: absolute;
+
+  top: 0;
+  right: -2px;
+
+  min-width: 18px;
+  height: 18px;
+
+  padding: 0 4px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #ef4444;
+  color: #ffffff;
+
+  border: 2px solid var(--bg-primary);
+
+  border-radius: 999px;
+
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1;
+
+  z-index: 2;
+
+  animation: notification-pulse 2s infinite;
+}
+
+
+/* =========================================================
+   Notification Bell Animation
+========================================================= */
+
+.notification-btn.has-notifications lucide-icon {
+  animation: notification-shake 4s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   Notification Pulse
+========================================================= */
+
+@keyframes notification-pulse {
+  0% {
+    box-shadow:
+      0 0 0 0 rgba(239, 68, 68, 0.45);
+  }
+
+  70% {
+    box-shadow:
+      0 0 0 6px rgba(239, 68, 68, 0);
+  }
+
+  100% {
+    box-shadow:
+      0 0 0 0 rgba(239, 68, 68, 0);
+  }
+}
+
+
+/* =========================================================
+   Notification Shake
+========================================================= */
+
+@keyframes notification-shake {
+  0%,
+  85%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  87% {
+    transform: rotate(10deg);
+  }
+
+  89% {
+    transform: rotate(-10deg);
+  }
+
+  91% {
+    transform: rotate(8deg);
+  }
+
+  93% {
+    transform: rotate(-8deg);
+  }
+
+  95% {
+    transform: rotate(4deg);
+  }
+
+  97% {
+    transform: rotate(-4deg);
+  }
+}
+
+
+/* =========================================================
+   Authentication Buttons
+========================================================= */
+
+.auth-buttons {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+}
+
+.auth-placeholder {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
+}
+
+.auth-placeholder {
+  width: 188px;
+  height: 44px;
+  flex: 0 0 auto;
+}
+
+.login-btn,
+.signup-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 40px;
+
+  padding: 0 18px;
+
+  border-radius: 6px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  text-decoration: none;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+/* =========================================================
+   Login
+========================================================= */
+
+.login-btn {
+  min-width: 90px;
+
+  background-color: var(--accent-color);
+
+  color: var(--accent-text);
+}
+
+.login-btn:hover {
+  background-color: var(--text-primary);
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   Sign Up
+========================================================= */
+
+.signup-btn {
+  min-width: 90px;
+
+  background-color: transparent;
+
+  color: var(--text-primary);
+
+  border: 1px solid var(--text-primary);
+}
+
+.signup-btn:hover {
+  background-color: var(--accent-color);
+
+  color: var(--accent-text);
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   User Menu
+========================================================= */
+
+.user-menu {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+}
+
+.user-profile {
+  flex-direction: row;
+
+  align-items: center;
+}
+
+.user-dropdown {
+  position: absolute;
+
+  top: calc(100% + 8px);
+  right: 0;
+
+  z-index: 1010;
+
+  width: 190px;
+
+  padding: 6px;
+
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+
+  background: var(--bg-primary);
+
+  box-shadow:
+    0 14px 35px rgba(0, 0, 0, 0.14);
+
+  animation: userDropdownIn 0.16s ease-out both;
+}
+
+.user-dropdown a,
+.user-dropdown button {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  width: 100%;
+  height: auto;
+
+  padding: 10px 11px;
+
+  border: 0;
+  border-radius: 6px;
+
+  background: transparent;
+
+  color: var(--text-primary);
+
+  font: inherit;
+  font-size: 13px;
+
+  text-align: left;
+  text-decoration: none;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.user-dropdown a:hover,
+.user-dropdown button:hover {
+  background: var(--bg-secondary);
+
+  color: var(--accent-color);
+}
+
+@keyframes userDropdownIn {
+  from {
+    opacity: 0;
+
+    transform: translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+}
+
+
+/* =========================================================
+   Hamburger
+========================================================= */
+
+.hamburger {
+  display: none !important;
+
+  width: 40px !important;
+  height: 40px !important;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  color: var(--text-primary);
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.25s ease;
+}
+
+.hamburger:hover {
+  background-color: var(--bg-secondary);
+}
+
+
+/* =========================================================
+   Tablet
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .navbar-container {
+    gap: 20px;
+  }
+
+  .nav-links {
+    gap: 18px;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+  }
+}
+
+
+/* =========================================================
+   Mobile
+========================================================= */
+
+@media (max-width: 700px) {
+
+  .navbar-container {
+    min-height: 64px;
+
+    padding: 0 16px;
+  }
+
+
+  /* Hamburger */
+
+  .hamburger {
+    display: flex !important;
+  }
+
+
+  /* Mobile Menu */
+
+  .nav-links {
+    position: absolute;
+
+    top: 64px;
+    left: 0;
+
+    width: 100%;
+
+    padding: 12px 16px 20px;
+
+    background-color: var(--bg-primary);
+
+    border-bottom: 1px solid var(--border-color);
+
+    box-shadow:
+      0 10px 30px rgba(0, 0, 0, 0.08);
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 4px;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(-15px);
+
+    pointer-events: none;
+
+    transition:
+      opacity 0.25s ease,
+      transform 0.25s ease,
+      visibility 0.25s ease;
+  }
+
+
+  /* Mobile Menu Open */
+
+  .nav-links.mobile-open {
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: translateY(0);
+
+    pointer-events: auto;
+  }
+
+
+  /* Mobile Items */
+
+  .nav-links li {
+    width: 100%;
+
+    opacity: 0;
+
+    transform: translateY(-8px);
+
+    transition:
+      opacity 0.25s ease,
+      transform 0.25s ease;
+  }
+
+  .nav-links.mobile-open li {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+
+
+  /* Stagger */
+
+  .nav-links.mobile-open li:nth-child(1) {
+    transition-delay: 0.05s;
+  }
+
+  .nav-links.mobile-open li:nth-child(2) {
+    transition-delay: 0.10s;
+  }
+
+  .nav-links.mobile-open li:nth-child(3) {
+    transition-delay: 0.15s;
+  }
+
+  .nav-links.mobile-open li:nth-child(4) {
+    transition-delay: 0.20s;
+  }
+
+  .nav-links.mobile-open li:nth-child(5) {
+    transition-delay: 0.25s;
+  }
+
+
+  /* Mobile Links */
+
+  .nav-links a {
+    display: block;
+
+    width: 100%;
+
+    padding: 14px 10px;
+
+    color: var(--text-secondary);
+
+    font-size: 15px;
+    font-weight: 500;
+
+    border-radius: 8px;
+
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease,
+      padding-left 0.2s ease;
+  }
+
+  .nav-links a::after {
+    display: none;
+  }
+
+  .nav-links a:hover {
+    background-color: var(--bg-secondary);
+
+    color: var(--text-primary);
+
+    padding-left: 16px;
+  }
+
+
+  /* Mobile Actions */
+
+  .nav-actions {
+    gap: 4px;
+  }
+
+  .login-btn,
+  .signup-btn {
+    min-width: auto;
+
+    padding: 0 14px;
+  }
+}
+
+
+/* =========================================================
+   Small Mobile
+========================================================= */
+
+@media (max-width: 450px) {
+
+  .logo {
+    width: clamp(72px, 24vw, 105px);
+    height: 42px;
+  }
+
+  .navbar-container {
+    gap: 8px;
+    padding: 0 12px;
+  }
+
+  .nav-actions {
+    gap: 3px;
+  }
+
+  .user-profile-copy,
+  .nav-actions .user-profile > lucide-icon {
+    display: none;
+  }
+
+  .nav-actions button {
+    width: 32px;
+    height: 32px;
+  }
+
+  .nav-actions .cart-btn {
+    padding: 4px 5px;
+  }
+
+  .nav-actions .user-profile {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+  }
+
+  .login-btn,
+  .signup-btn {
+    height: 32px;
+
+    min-width: 0;
+    padding: 0 6px;
+
+    font-size: 11px;
+
+    border-radius: 6px;
+  }
+
+  .hamburger {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  /* Small Notification Badge */
+
+  .notification-count,
+  .cart-count {
+    min-width: 15px;
+    height: 15px;
+
+    font-size: 8px;
+
+    top: 1px;
+    right: -1px;
+  }
+}
+
+
+/* =========================================================
+   Accessibility
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .notification-btn.has-notifications lucide-icon,
+  .notification-count {
+    animation: none;
+  }
+}

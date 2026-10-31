@@ -1,0 +1,52 @@
+{
+  "products": [
+    {
+      "id": 101,
+      "name": "Wireless Noise Cancelling Headphones",
+      "category": "electronics",
+      "subcategory": "Headphones",
+      "price": 129.99,
+      "oldPrice": 159.99,
+      "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=85",
+      "rating": 4.9,
+      "stock": 15,
+      "badge": "Best Seller"
+    },
+    {
+      "id": 102,
+      "name": "Smartphone Pro Max",
+      "category": "electronics",
+      "subcategory": "Phones",
+      "price": 999.99,
+      "oldPrice": null,
+      "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=85",
+      "rating": 4.8,
+      "stock": 10,
+      "badge": "New"
+    },
+    {
+      "id": 103,
+      "name": "Ultra HD Mirrorless Camera",
+      "category": "electronics",
+      "subcategory": "Cameras",
+      "price": 849.99,
+      "oldPrice": 949.99,
+      "image": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=800&q=85",
+      "rating": 4.7,
+      "stock": 7,
+      "badge": "Sale"
+    },
+    {
+      "id": 104,
+      "name": "Smart Watch Series X",
+      "category": "electronics",
+      "subcategory": "Smart Watches",
+      "price": 249.99,
+      "oldPrice": null,
+      "image": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=85",
+      "rating": 4.6,
+      "stock": 22,
+      "badge": null
+    }
+  ]
+}

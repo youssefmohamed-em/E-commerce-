@@ -1,0 +1,216 @@
+<section class="about-section">
+
+  <div class="about-container">
+
+    <!-- Image -->
+    <div class="about-visual">
+
+      <div class="about-image-wrapper">
+
+        <img
+          [alt]="aboutData.hero.cardTitle"
+          class="about-image"
+        />
+
+        <div class="about-image-overlay"></div>
+
+        <div class="about-image-badge">
+
+          <div class="badge-icon">
+
+            <lucide-icon
+              [img]="Sparkles"
+              [size]="20"
+            ></lucide-icon>
+
+          </div>
+
+          <div class="badge-content">
+
+            <strong>
+              {{ aboutData.hero.qualityTitle }}
+            </strong>
+
+            <span>
+              {{ aboutData.hero.qualityDescription }}
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div
+        class="about-decoration about-decoration-one"
+      ></div>
+
+      <div
+        class="about-decoration about-decoration-two"
+      ></div>
+
+    </div>
+
+    <!-- Content -->
+    <div class="about-content">
+
+      <span class="section-label">
+
+        <lucide-icon
+          [img]="Sparkles"
+          [size]="15"
+        ></lucide-icon>
+
+        {{ aboutData.story.label }}
+
+      </span>
+
+      <h2>
+
+        {{ aboutData.story.title }}
+
+        <span>
+          {{ aboutData.story.highlight }}
+        </span>
+
+      </h2>
+
+      <p class="about-description">
+        {{ aboutData.story.paragraphs[0] }}
+      </p>
+
+      <p class="about-description">
+        {{ aboutData.story.paragraphs[1] }}
+      </p>
+
+      <!-- Features -->
+      <div class="about-features">
+
+        <div class="about-feature">
+
+          <div class="feature-icon">
+
+            <lucide-icon
+              [img]="Sparkles"
+              [size]="19"
+            ></lucide-icon>
+
+          </div>
+
+          <div class="feature-content">
+
+            <strong>
+              {{ aboutData.mission.items[0].title }}
+            </strong>
+
+            <span>
+              {{ aboutData.mission.items[0].description }}
+            </span>
+
+          </div>
+
+        </div>
+
+        <div class="about-feature">
+
+          <div class="feature-icon">
+
+            <lucide-icon
+              [img]="ShieldCheck"
+              [size]="19"
+            ></lucide-icon>
+
+          </div>
+
+          <div class="feature-content">
+
+            <strong>
+              {{ aboutData.mission.items[1].title }}
+            </strong>
+
+            <span>
+              {{ aboutData.mission.items[1].description }}
+            </span>
+
+          </div>
+
+        </div>
+
+        <div class="about-feature">
+
+          <div class="feature-icon">
+
+            <lucide-icon
+              [img]="Heart"
+              [size]="19"
+            ></lucide-icon>
+
+          </div>
+
+          <div class="feature-content">
+
+            <strong>
+              {{ aboutData.whyShoply.items[2].title }}
+            </strong>
+
+            <span>
+              {{ aboutData.whyShoply.items[2].description }}
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Footer -->
+      <div class="about-footer">
+
+        <a
+          routerLink="/about"
+          class="about-button"
+        >
+
+          <span>
+            Discover Our Story
+          </span>
+
+          <lucide-icon
+            [img]="ArrowRight"
+            [size]="18"
+          ></lucide-icon>
+
+        </a>
+
+        <div class="about-trust">
+
+          <div class="trust-icon">
+
+            <lucide-icon
+              [img]="Heart"
+              [size]="17"
+            ></lucide-icon>
+
+          </div>
+
+          <div>
+
+            <strong>
+              {{ aboutData.story.highlightTitle }}
+            </strong>
+
+            <span>
+              {{ aboutData.story.highlightDescription }}
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>

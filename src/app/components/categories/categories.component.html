@@ -1,0 +1,162 @@
+<section class="categories-section">
+
+  <div class="section-header">
+
+    <span class="section-subtitle">
+      EXPLORE
+    </span>
+
+    <h1>
+      Our Categories
+    </h1>
+
+    <p>
+      Discover everything you need, all in one place.
+    </p>
+
+  </div>
+
+
+  <!-- Loading -->
+  @if (loading()) {
+
+    <div class="loading-container">
+
+      <div class="spinner"></div>
+
+      <p>
+        Loading categories...
+      </p>
+
+    </div>
+
+  }
+
+
+  <!-- Error -->
+  @else if (error()) {
+
+    <div class="error-state">
+
+      <h2>
+        Something went wrong
+      </h2>
+
+      <p>
+        We couldn't load the categories.
+        Please try again later.
+      </p>
+
+    </div>
+
+  }
+
+
+  <!-- Categories -->
+  @else if (categories().length > 0) {
+
+    <div class="categories-grid">
+
+      @for (
+        category of categories();
+        track category.id
+      ) {
+
+        <article
+          class="category-card"
+          [routerLink]="[
+            '/category',
+            category.id
+          ]"
+        >
+
+          <!-- Image -->
+          <div class="category-image">
+
+            <img
+              [src]="category.image"
+              [alt]="category.name"
+            />
+
+            <span class="category-number">
+              {{ category.number }}
+            </span>
+
+          </div>
+
+
+          <!-- Content -->
+          <div class="category-content">
+
+            <div class="category-info">
+
+              <h2>
+                {{ category.name }}
+              </h2>
+
+              <p>
+                {{ category.description }}
+              </p>
+
+            </div>
+
+
+            <!-- Subcategories -->
+            <div class="subcategories">
+
+              @for (
+                subcategory of category.subcategories;
+                track subcategory
+              ) {
+
+                <span>
+                  {{ subcategory }}
+                </span>
+
+              }
+
+            </div>
+
+
+            <!-- Footer -->
+            <div class="category-footer">
+
+              <span>
+                Explore Collection
+              </span>
+
+              <span class="arrow">
+                →
+              </span>
+
+            </div>
+
+          </div>
+
+        </article>
+
+      }
+
+    </div>
+
+  }
+
+
+  <!-- Empty State -->
+  @else {
+
+    <div class="empty-state">
+
+      <h2>
+        No categories found
+      </h2>
+
+      <p>
+        There are no categories available right now.
+      </p>
+
+    </div>
+
+  }
+
+</section>

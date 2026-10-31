@@ -1,0 +1,387 @@
+@if (loading()) {
+
+  <div class="loading-container">
+    <div class="spinner"></div>
+    <p>Loading About...</p>
+  </div>
+
+} @else if (error()) {
+
+  <div class="error-state">
+    <h2>Something went wrong</h2>
+    <p>
+      We couldn't load the About page.
+      Please try again later.
+    </p>
+  </div>
+
+} 
+
+
+
+@if (aboutData  ) {
+
+
+  
+
+  <main class="about-page">
+
+    <!-- =========================
+         Hero Section
+    ========================== -->
+    <section class="about-hero">
+
+      <div class="about-hero-content">
+
+        <span class="section-label">
+          <lucide-icon [img]="Sparkles" [size]="16"></lucide-icon>
+          {{ aboutData.hero.label }}
+        </span>
+
+        <h1>
+          {{ aboutData.hero.title }}
+          <span>{{ aboutData.hero.highlight }}</span>
+        </h1>
+
+        <p>
+          {{ aboutData.hero.description }}
+        </p>
+
+        <div class="hero-actions">
+
+          <a
+            routerLink="/shop"
+            class="primary-btn"
+          >
+            Shop Now
+            <lucide-icon [img]="ArrowRight" [size]="18"></lucide-icon>
+          </a>
+
+          <a
+            href="#our-story"
+            class="secondary-btn"
+          >
+            Discover Our Story
+          </a>
+
+        </div>
+
+      </div>
+
+      <div class="about-hero-visual">
+
+        <div class="hero-card hero-card-main">
+          <img
+            [src]="aboutData.hero.image"
+            [alt]="aboutData.hero.cardTitle"
+          />
+
+          <div class="hero-card-content">
+            <lucide-icon
+              [img]="ShoppingBag"
+              [size]="32"
+            ></lucide-icon>
+
+            <span>{{ aboutData.hero.cardTitle }}</span>
+            <small>{{ aboutData.hero.cardDescription }}</small>
+          </div>
+        </div>
+
+        <div class="floating-card floating-card-top">
+          <lucide-icon
+            [img]="Star"
+            [size]="18"
+          ></lucide-icon>
+
+          <div>
+            <strong>{{ aboutData.hero.qualityTitle }}</strong>
+            <span>{{ aboutData.hero.qualityDescription }}</span>
+          </div>
+        </div>
+
+        <div class="floating-card floating-card-bottom">
+          <lucide-icon
+            [img]="Heart"
+            [size]="18"
+          ></lucide-icon>
+
+          <div>
+            <strong>{{ aboutData.hero.customerTitle }}</strong>
+            <span>{{ aboutData.hero.customerDescription }}</span>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =========================
+         Our Story
+    ========================== -->
+    <section
+      class="story-section animate-section"
+      id="our-story"
+    >
+
+      <div class="story-image">
+        <div class="story-image-inner">
+          <img
+            [src]="aboutData.story.image"
+            [alt]="aboutData.story.title"
+          />
+          <span>SHOPLY</span>
+        </div>
+      </div>
+
+      <div class="story-content">
+
+        <span class="section-label">
+          {{ aboutData.story.label }}
+        </span>
+
+        <h2>
+          {{ aboutData.story.title }}
+          <span>{{ aboutData.story.highlight }}</span>
+        </h2>
+
+        @for (paragraph of aboutData.story.paragraphs; track paragraph) {
+          <p>
+            {{ paragraph }}
+          </p>
+        }
+
+        <div class="story-highlight">
+          <div class="highlight-icon">
+            <lucide-icon
+              [img]="Heart"
+              [size]="22"
+            ></lucide-icon>
+          </div>
+
+          <div>
+            <strong>{{ aboutData.story.highlightTitle }}</strong>
+            <span>
+              {{ aboutData.story.highlightDescription }}
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =========================
+         Mission Section
+    ========================== -->
+    <section class="mission-section animate-section">
+
+      <div class="section-heading">
+
+        <span class="section-label">
+          {{ aboutData.mission.label }}
+        </span>
+
+        <h2>
+          {{ aboutData.mission.title }}
+          <span>{{ aboutData.mission.highlight }}</span>
+          {{ aboutData.mission.ending }}
+        </h2>
+
+        <p>
+          {{ aboutData.mission.description }}
+        </p>
+
+      </div>
+
+      <div class="mission-grid">
+
+        @for (item of aboutData.mission.items; track item.title) {
+          <article class="mission-card">
+
+            <div class="mission-image">
+              <img
+                [src]="item.image"
+                [alt]="item.title"
+              />
+            </div>
+
+            <div class="mission-icon">
+              @switch (item.icon) {
+                @case ('Sparkles') {
+                  <lucide-icon [img]="Sparkles" [size]="24"></lucide-icon>
+                }
+                @case ('ShieldCheck') {
+                  <lucide-icon [img]="ShieldCheck" [size]="24"></lucide-icon>
+                }
+                @case ('Truck') {
+                  <lucide-icon [img]="Truck" [size]="24"></lucide-icon>
+                }
+                @case ('Users') {
+                  <lucide-icon [img]="Users" [size]="24"></lucide-icon>
+                }
+              }
+            </div>
+
+            <h3>{{ item.title }}</h3>
+
+            <p>
+              {{ item.description }}
+            </p>
+
+          </article>
+        }
+
+      </div>
+
+    </section>
+
+    <!-- =========================
+         Stats Section
+    ========================== -->
+    <section class="stats-section animate-section">
+
+      <div class="stats-heading">
+
+        <span class="section-label">
+          Shoply By The Numbers
+        </span>
+
+        <h2>
+          Growing With
+          <span>You.</span>
+        </h2>
+
+      </div>
+
+      <div class="stats-grid">
+
+        @for (stat of aboutData.stats; track stat.label) {
+          <div class="stat-item">
+
+            <strong>{{ stat.value }}</strong>
+
+            <span>{{ stat.label }}</span>
+
+          </div>
+        }
+
+      </div>
+
+    </section>
+
+    <!-- =========================
+         Why Shoply
+    ========================== -->
+    <section class="why-section animate-section">
+
+      <div class="why-content">
+
+        <span class="section-label">
+          {{ aboutData.whyShoply.label }}
+        </span>
+
+        <h2>
+          {{ aboutData.whyShoply.title }}
+          <span>{{ aboutData.whyShoply.highlight }}</span>
+        </h2>
+
+        <p>
+          {{ aboutData.whyShoply.description }}
+        </p>
+
+        <ul class="why-list">
+
+          @for (item of aboutData.whyShoply.items; track item.title) {
+            <li>
+
+              <span class="check-icon">
+                @switch (item.icon) {
+                  @case ('ShieldCheck') {
+                    <lucide-icon [img]="ShieldCheck" [size]="18"></lucide-icon>
+                  }
+                  @case ('Sparkles') {
+                    <lucide-icon [img]="Sparkles" [size]="18"></lucide-icon>
+                  }
+                  @case ('Heart') {
+                    <lucide-icon [img]="Heart" [size]="18"></lucide-icon>
+                  }
+                }
+              </span>
+
+              <div>
+                <strong>{{ item.title }}</strong>
+                <span>{{ item.description }}</span>
+              </div>
+
+            </li>
+          }
+
+        </ul>
+
+      </div>
+
+      <div class="why-visual">
+
+        <div class="why-card">
+
+          <div class="why-card-logo">
+            Shoply
+          </div>
+
+          <div class="why-card-line"></div>
+
+          <span>
+            Discover.
+          </span>
+
+          <span>
+            Choose.
+          </span>
+
+          <span>
+            Enjoy.
+          </span>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =========================
+         CTA
+    ========================== -->
+    <section class="cta-section animate-section">
+
+      <div class="cta-content">
+
+        <span class="section-label">
+          {{ aboutData.cta.label }}
+        </span>
+
+        <h2>
+          {{ aboutData.cta.title }}
+          <span>{{ aboutData.cta.highlight }}</span>
+        </h2>
+
+        <p>
+          {{ aboutData.cta.description }}
+        </p>
+
+        <a
+          routerLink="/shop"
+          class="cta-btn"
+        >
+          {{ aboutData.cta.buttonText }}
+          <lucide-icon
+            [img]="ArrowRight"
+            [size]="18"
+          ></lucide-icon>
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+}

@@ -1,0 +1,195 @@
+<nav class="navbar">
+  <div class="navbar-container">
+
+    <!-- =========================
+     Logo
+========================== -->
+
+    <a class="logo" routerLink="/" (click)="closeMenu()" aria-label="Shoply Home">
+      <img src="/logo.jpg" alt="Shoply" class="logo-image" />
+    </a>
+
+
+    <!-- =========================
+         Navigation
+    ========================== -->
+    <ul class="nav-links" [class.mobile-open]="isMenuOpen">
+
+      <li>
+        <a routerLink="/" (click)="closeMenu()">
+          Home
+        </a>
+      </li>
+
+      <li>
+        <a routerLink="/shop" (click)="closeMenu()">
+          Shop
+        </a>
+      </li>
+
+      <li>
+        <a routerLink="/categories" (click)="closeMenu()">
+          Categories
+        </a>
+      </li>
+
+      <li>
+        <a routerLink="/about" (click)="closeMenu()">
+          About
+        </a>
+      </li>
+
+      <li>
+        <!-- <a routerLink="/contact" (click)="closeMenu()">
+          Contact
+        </a> -->
+      </li>
+
+    </ul>
+
+
+    <!-- =========================
+         Actions
+    ========================== -->
+    <div class="nav-actions">
+
+
+      <!-- =========================
+           Theme Toggle
+      ========================== -->
+      <button type="button" class="icon-btn theme-btn" [attr.aria-label]="
+          isDarkMode
+            ? 'Switch to light mode'
+            : 'Switch to dark mode'
+        " (click)="toggleTheme()">
+
+        <lucide-icon
+          [img]="isDarkMode ? Sun : Moon"
+          [size]="20"
+          [strokeWidth]="1.8"
+        />
+
+      </button>
+
+
+
+
+
+
+      <!-- =========================
+           Cart
+      ========================== -->
+      <button type="button" class="icon-btn cart-btn" aria-label="Shopping cart" routerLink="/cart">
+
+        <lucide-icon [img]="ShoppingCart" [size]="21" [strokeWidth]="1.8" />
+
+        @if (cartCount() > 0) {
+
+        <span class="cart-count">
+          {{
+          cartCount() > 99
+          ? '99+'
+          : cartCount()
+          }}
+        </span>
+
+        }
+
+      </button>
+
+
+      <!-- =========================
+           Authentication
+      ========================== -->
+      @if (clientReady()) {
+      <div class="auth-buttons">
+
+        @if (isLoggedIn()) {
+
+        <!-- Logged In User -->
+        <div class="user-menu">
+
+          <button type="button" class="user-profile" [attr.aria-expanded]="isUserMenuOpen" aria-haspopup="menu"
+            aria-controls="user-dropdown" (click)="toggleUserMenu()">
+            <span class="user-avatar">
+              {{ currentUser()?.name?.charAt(0) }}
+            </span>
+
+            <span class="user-profile-copy">
+              <span class="user-name">
+                {{ currentUser()?.name }}
+              </span>
+
+              <span class="view-profile">
+                View Profile
+              </span>
+            </span>
+
+            <lucide-icon [img]="ChevronDown" [size]="16" [strokeWidth]="2" />
+          </button>
+
+          @if (isUserMenuOpen) {
+          <div class="user-dropdown" id="user-dropdown" role="menu">
+            <a routerLink="/profile" role="menuitem" (click)="closeUserMenu(); closeMenu()">
+              <lucide-icon [img]="UserRound" [size]="17" [strokeWidth]="1.8" />
+              Profile
+            </a>
+
+            <a routerLink="/orders" role="menuitem" (click)="closeUserMenu(); closeMenu()">
+              <lucide-icon [img]="PackageCheck" [size]="17" [strokeWidth]="1.8" />
+              My Orders
+            </a>
+
+            <button type="button" role="menuitem" (click)="logout()">
+              <lucide-icon [img]="LogOut" [size]="17" [strokeWidth]="1.8" />
+              Logout
+            </button>
+          </div>
+          }
+
+        </div>
+
+        } @else {
+
+        <!-- Guest -->
+
+        <a routerLink="/login" class="login-btn" (click)="closeMenu()">
+          Login
+        </a>
+
+        <a routerLink="/signup" class="signup-btn" (click)="closeMenu()">
+          Sign Up
+        </a>
+
+        }
+
+      </div>
+      } @else {
+      <div class="auth-buttons auth-placeholder" aria-hidden="true"></div>
+      }
+
+
+      <!-- =========================
+           Hamburger
+      ========================== -->
+      <button type="button" class="hamburger" [class.active]="isMenuOpen" [attr.aria-expanded]="isMenuOpen"
+        aria-label="Toggle navigation" (click)="toggleMenu()">
+
+        @if (!isMenuOpen) {
+
+        <lucide-icon [img]="Menu" [size]="24" [strokeWidth]="2" />
+
+        }
+
+        @if (isMenuOpen) {
+
+        <lucide-icon [img]="X" [size]="24" [strokeWidth]="2" />
+
+        }
+
+      </button>
+
+    </div>
+
+  </div>
+</nav>

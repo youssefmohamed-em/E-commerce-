@@ -1,0 +1,143 @@
+@if (heroLoading) {
+
+  <section class="hero hero-loading">
+
+    <div class="hero-loading-content">
+
+      <div class="hero-loading-spinner"></div>
+
+      <p>Loading...</p>
+
+    </div>
+
+  </section>
+
+}
+@else if (heroError) {
+
+  <section class="hero hero-error">
+
+    <div class="hero-error-content">
+
+      <h2>Something went wrong</h2>
+
+      <p>
+        We couldn't load the hero section.
+      </p>
+
+    </div>
+
+  </section>
+
+}
+@else if (heroData && heroData.slides.length > 0) {
+
+  <section class="hero">
+
+    @for (
+      slide of heroData.slides;
+      track slide.image;
+      let i = $index
+    ) {
+
+      <div
+        class="hero-slide"
+        [class.active]="currentSlide === i"
+        [style.background-image]="'url(' + slide.image + ')'"
+      >
+
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+
+          <span class="hero-subtitle">
+            {{ slide.subtitle }}
+          </span>
+
+          <h1>
+            {{ slide.title }}
+          </h1>
+
+          <p>
+            {{ slide.description }}
+          </p>
+
+          <div class="hero-actions">
+
+            <a
+              [routerLink]="slide.primaryButtonLink"
+              class="hero-btn primary"
+            >
+              {{ slide.primaryButtonText }}
+            </a>
+
+            <a
+              [routerLink]="slide.secondaryButtonLink"
+              class="hero-btn secondary"
+            >
+              {{ slide.secondaryButtonText }}
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    }
+
+    @if (heroData.slides.length > 1) {
+
+      <button
+        type="button"
+        class="hero-arrow hero-arrow-prev"
+        aria-label="Previous slide"
+        (click)="previousSlide()"
+      >
+        ‹
+      </button>
+
+      <button
+        type="button"
+        class="hero-arrow hero-arrow-next"
+        aria-label="Next slide"
+        (click)="nextSlide()"
+      >
+        ›
+      </button>
+
+      <div class="hero-dots">
+
+        @for (
+          slide of heroData.slides;
+          track slide.image;
+          let i = $index
+        ) {
+
+          <button
+            type="button"
+            class="hero-dot"
+            [class.active]="currentSlide === i"
+            [attr.aria-label]="'Go to slide ' + (i + 1)"
+            (click)="goToSlide(i)"
+          ></button>
+
+        }
+
+      </div>
+
+    }
+
+  </section>
+
+}
+
+<app-featured-categories></app-featured-categories>
+
+@if (aboutData) {
+
+  <app-about-section
+    [aboutData]="aboutData"
+  />
+
+}

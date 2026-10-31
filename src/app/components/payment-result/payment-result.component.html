@@ -1,0 +1,115 @@
+<div class="payment-result-page">
+
+  <div class="result-card">
+
+    @if (loading()) {
+
+      <div class="result-icon loading">
+
+        <lucide-icon
+          [img]="LoaderCircle"
+          [size]="42"
+          class="spin"
+        />
+
+      </div>
+
+      <h1>
+        Confirming Payment
+      </h1>
+
+      <p>
+        {{ message() }}
+      </p>
+
+    } @else if (paid()) {
+
+      <div class="result-icon success">
+
+        <lucide-icon
+          [img]="CheckCircle2"
+          [size]="42"
+        />
+
+      </div>
+
+      <h1>
+        Payment Successful
+      </h1>
+
+      <p>
+        {{ message() }}
+      </p>
+
+      <button
+        type="button"
+        (click)="goHome()"
+      >
+        Continue Shopping
+      </button>
+
+    } @else if (failed()) {
+
+      <div class="result-icon failed">
+
+        <lucide-icon
+          [img]="XCircle"
+          [size]="42"
+        />
+
+      </div>
+
+      <h1>
+        Payment Failed
+      </h1>
+
+      <p>
+        {{ message() }}
+      </p>
+
+      <button
+        type="button"
+        (click)="goToCart()"
+      >
+        Return to Cart
+      </button>
+
+    } @else {
+
+      <div class="result-icon loading">
+
+        <lucide-icon
+          [img]="LoaderCircle"
+          [size]="42"
+        />
+
+      </div>
+
+      <h1>
+        Payment Status Pending
+      </h1>
+
+      <p>
+        {{ message() }}
+      </p>
+
+      <button
+        type="button"
+        (click)="checkAgain()"
+      >
+        Check Payment Status
+      </button>
+
+      <button
+        type="button"
+        class="secondary-button"
+        (click)="goToOrders()"
+      >
+        View My Orders
+      </button>
+
+    }
+
+  </div>
+
+</div>

@@ -1,0 +1,237 @@
+<section class="cart-page">
+
+    <div class="cart-header">
+        <span class="eyebrow">SHOPPING BAG</span>
+
+        <h1>Your Cart</h1>
+
+        <p>
+            Review your selected products before checkout.
+        </p>
+    </div>
+
+
+    @if (cartItems().length === 0) {
+
+    <div class="empty-cart">
+
+        <div class="empty-cart-icon">
+            <lucide-icon [img]="Trash2" [size]="28" />
+        </div>
+
+        <h2>Your cart is empty</h2>
+
+        <p>
+            You haven't added any products to your cart yet.
+        </p>
+
+        <a routerLink="/shop" class="continue-shopping">
+            <lucide-icon [img]="ArrowLeft" [size]="17" />
+
+            Continue Shopping
+        </a>
+
+    </div>
+
+    }
+
+    @else {
+
+    <div class="cart-layout">
+
+        <!-- CART ITEMS -->
+        <div class="cart-items">
+
+            <div class="cart-items-header">
+                <span>
+                    {{ cartCount() }} items
+                </span>
+            </div>
+
+
+            @for (
+            item of cartItems();
+            track item.categoryId + '-' + item.productId
+            ) {
+
+            <article class="cart-item">
+
+                <!-- IMAGE -->
+                <div class="cart-item-image">
+
+                    <img [src]="item.product.image" [alt]="item.product.name" />
+
+                </div>
+
+
+                <!-- PRODUCT INFO -->
+                <div class="cart-item-info">
+
+                    <span class="category">
+                        {{ item.product.category }}
+                    </span>
+
+                    <h2>
+                        {{ item.product.name }}
+                    </h2>
+
+                    <span class="price">
+                        ${{ item.product.price }}
+                    </span>
+
+                </div>
+
+
+                <!-- QUANTITY -->
+                <div class="quantity-control">
+
+                    <button type="button" aria-label="Decrease quantity" (click)="decreaseQuantity(item)">
+                        <lucide-icon [img]="Minus" [size]="15" />
+                    </button>
+
+
+                    <span>
+                        {{ item.quantity }}
+                    </span>
+
+
+                    <button type="button" aria-label="Increase quantity" (click)="increaseQuantity(item)">
+                        <lucide-icon [img]="Plus" [size]="15" />
+                    </button>
+
+                </div>
+
+
+                <!-- ITEM TOTAL -->
+                <div class="item-total">
+
+                    <strong>
+                        ${{ item.product.price * item.quantity }}
+                    </strong>
+
+                </div>
+
+
+                <!-- REMOVE -->
+                <button type="button" class="remove-btn" aria-label="Remove product" (click)="removeItem(item)">
+                    <lucide-icon [img]="Trash2" [size]="17" />
+                </button>
+
+            </article>
+
+            }
+
+        </div>
+
+
+        <!-- ORDER SUMMARY -->
+        <aside class="cart-summary">
+
+            <h2>
+                Order Summary
+            </h2>
+
+
+            <div class="summary-row">
+
+                <span>
+                    Subtotal
+                </span>
+
+                <strong>
+                    ${{ subtotal() }}
+                </strong>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <span>
+                    Shipping
+                </span>
+
+                <span>
+                    Free
+                </span>
+
+            </div>
+
+
+            <div class="summary-divider"></div>
+
+
+            <div class="summary-total">
+
+                <span>
+                    Total
+                </span>
+
+                <strong>
+                    ${{ subtotal() }}
+                </strong>
+
+            </div>
+
+
+            <button type="button" class="checkout-btn" (click)="checkout()">
+                Checkout
+            </button>
+
+
+            <a routerLink="/shop" class="continue-link">
+
+                <lucide-icon [img]="ArrowLeft" [size]="16" />
+
+                Continue Shopping
+
+            </a>
+
+        </aside>
+
+    </div>
+
+    }
+
+</section>
+@if (showLoginPopup()) {
+
+<div class="login-popup-overlay" (click)="cancelLogin()">
+
+    <div class="login-popup" role="dialog" aria-modal="true" aria-labelledby="login-popup-title"
+        (click)="$event.stopPropagation()">
+
+        <div class="login-popup-icon">
+            <lucide-icon [img]="LockKeyhole" [size]="24" />
+        </div>
+
+        <div class="login-popup-content">
+
+            <h2 id="login-popup-title">
+                Login Required
+            </h2>
+
+            <p>
+                Please login to your account before continuing
+                to checkout.
+            </p>
+
+        </div>
+
+        <div class="login-popup-actions">
+
+            <button type="button" class="popup-cancel-btn" (click)="cancelLogin()">
+                Cancel
+            </button>
+
+            <button type="button" class="popup-login-btn" (click)="goToLogin()">
+                Login
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+}

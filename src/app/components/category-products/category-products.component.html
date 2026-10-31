@@ -1,0 +1,236 @@
+<section class="products-section">
+
+  <!-- Header -->
+  <div class="products-header">
+
+    <div class="header-content">
+
+      <span class="section-subtitle">
+        SHOP COLLECTION
+      </span>
+
+      <h1>
+        {{ categoryId() | titlecase }}
+      </h1>
+
+      <p>
+        Discover our latest collection and find something
+        perfect for you.
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <!-- Loading -->
+  @if (loading()) {
+
+    <div class="loading-container">
+
+      <div class="spinner"></div>
+
+      <p>
+        Loading products...
+      </p>
+
+    </div>
+
+  }
+
+
+  <!-- Error -->
+  @else if (error()) {
+
+    <div class="error-state">
+
+      <h2>
+        Something went wrong
+      </h2>
+
+      <p>
+        We couldn't load the products.
+        Please try again later.
+      </p>
+
+    </div>
+
+  }
+
+
+  <!-- Products -->
+  @else {
+
+    <!-- Toolbar -->
+ <!-- Toolbar -->
+<div class="products-toolbar">
+
+  <span class="products-count">
+    {{ filteredProducts().length }} Products
+  </span>
+
+  <div class="search-box">
+
+    <input
+      #searchInput
+      type="search"
+      placeholder="Search products..."
+      [value]="searchTerm()"
+      (input)="searchProducts(searchInput.value)"
+    />
+
+    @if (searchTerm()) {
+
+      <button
+        type="button"
+        class="clear-search"
+        aria-label="Clear search"
+        (click)="clearSearch()"
+      >
+        ×
+      </button>
+
+    }
+
+  </div>
+
+</div>
+
+
+    @if (filteredProducts().length > 0) {
+
+      <div class="products-grid">
+
+        @for (
+          product of filteredProducts();
+          track product.id
+        ) {
+
+          <article
+            class="product-card"
+            [class.out-of-stock]="product.stock <= 0"
+            [routerLink]="[
+              '/product',
+              categoryId(),
+              product.id
+            ]"
+            tabindex="0"
+            (keydown.enter)="
+              $event.preventDefault();
+              openProduct(product.id)
+            "
+            (keydown.space)="
+              $event.preventDefault();
+              openProduct(product.id)
+            "
+          >
+
+            <!-- Image -->
+            <div class="product-image">
+
+              <img
+                [src]="product.image"
+                [alt]="product.name"
+              />
+
+              <button
+                type="button"
+                class="wishlist-btn"
+                aria-label="Add to wishlist"
+                (click)="$event.stopPropagation()"
+              >
+                ♡
+              </button>
+
+            </div>
+
+
+            <!-- Content -->
+            <div class="product-content">
+
+              <span class="product-subcategory">
+                {{ product.category }}
+              </span>
+
+              <h2>
+                {{ product.name }}
+              </h2>
+
+
+              <!-- Stock -->
+              <div class="product-stock">
+
+                @if (product.stock > 0) {
+
+                  <span>
+                    {{ product.stock }} in stock
+                  </span>
+
+                } @else {
+
+                  <span>
+                    Out of stock
+                  </span>
+
+                }
+
+              </div>
+
+
+              <!-- Price -->
+              <div class="product-price">
+
+                <strong>
+                  ${{ product.price }}
+                </strong>
+
+              </div>
+
+
+              <!-- Add To Cart -->
+              <button
+                type="button"
+                class="add-cart-btn"
+                [disabled]="product.stock <= 0"
+                (click)="addToCart(product, $event)"
+              >
+
+                @if (product.stock > 0) {
+                  Add to Cart
+                } @else {
+                  Out of Stock
+                }
+
+              </button>
+
+            </div>
+
+          </article>
+
+        }
+
+      </div>
+
+    }
+
+
+    <!-- Empty State -->
+    @else {
+
+      <div class="empty-state">
+
+        <h2>
+          No products found
+        </h2>
+
+        <p>
+          There are no products available in this category.
+        </p>
+
+      </div>
+
+    }
+
+  }
+
+</section>

@@ -1,0 +1,280 @@
+.categories-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 24px;
+
+  // Visible SSR/no-JavaScript fallback
+  opacity: 1;
+  transform: translateY(0);
+
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+
+// Added only in the browser after hydration, before observation starts.
+.categories-section.is-pending {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.categories-section.is-pending.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+// =========================
+// Section Header
+// =========================
+
+.section-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.section-subtitle {
+  display: inline-block;
+  margin-bottom: 12px;
+
+  color: var(--text-secondary);
+
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 3px;
+
+  transition: color 0.3s ease;
+}
+
+.section-header h2 {
+  margin: 0;
+
+  color: var(--text-primary);
+
+  font-size: clamp(30px, 4vw, 42px);
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -1px;
+
+  transition: color 0.3s ease;
+}
+
+.section-header p {
+  max-width: 500px;
+  margin: 16px auto 0;
+
+  color: var(--text-secondary);
+
+  font-size: 15px;
+  line-height: 1.7;
+
+  transition: color 0.3s ease;
+}
+
+// =========================
+// Categories Grid
+// =========================
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+// =========================
+// Category Card
+// =========================
+
+.category-card {
+  position: relative;
+
+  height: 400px;
+
+  display: block;
+  overflow: hidden;
+
+  border-radius: 10px;
+
+  text-decoration: none;
+
+  background-color: var(--bg-secondary);
+
+  isolation: isolate;
+
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+// Keep cards visible in the SSR/no-JavaScript fallback.
+.categories-section.is-pending .category-card {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+// Cards animation starts after section becomes visible
+.categories-section.is-pending.visible .category-card {
+  animation: categoryFadeIn 0.7s ease forwards;
+}
+
+.categories-section.is-pending.visible .category-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.categories-section.is-pending.visible .category-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.categories-section.is-pending.visible .category-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.categories-section.is-pending.visible .category-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+// =========================
+// Category Image
+// =========================
+
+.category-image {
+  position: absolute;
+  inset: 0;
+
+  background-size: cover;
+  background-position: center;
+
+  transition: transform 0.5s ease;
+}
+
+// =========================
+// Overlay
+// =========================
+
+.category-overlay {
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.75),
+    rgba(0, 0, 0, 0.15)
+  );
+
+  transition: background 0.4s ease;
+}
+
+// =========================
+// Category Content
+// =========================
+
+.category-content {
+  position: absolute;
+
+  left: 24px;
+  right: 24px;
+  bottom: 24px;
+
+  z-index: 2;
+
+  color: #ffffff;
+}
+
+.category-content span {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: rgba(255, 255, 255, 0.7);
+
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.category-content h3 {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: 25px;
+  font-weight: 600;
+
+  transition: transform 0.3s ease;
+}
+
+.category-content p {
+  margin: 7px 0 0;
+
+  color: rgba(255, 255, 255, 0.8);
+
+  font-size: 13px;
+}
+
+// =========================
+// Card Hover
+// =========================
+
+.category-card:hover .category-image {
+  transform: scale(1.08);
+}
+
+.category-card:hover .category-overlay {
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.82),
+    rgba(0, 0, 0, 0.2)
+  );
+}
+
+.category-card:hover .category-content h3 {
+  transform: translateY(-3px);
+}
+
+// =========================
+// Animations
+// =========================
+
+@keyframes categoryFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// =========================
+// Responsive
+// =========================
+
+@media (max-width: 1000px) {
+  .categories-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .category-card {
+    height: 360px;
+  }
+}
+
+@media (max-width: 600px) {
+  .categories-section {
+    padding: 70px 20px;
+  }
+
+  .section-header {
+    margin-bottom: 35px;
+  }
+
+  .categories-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .category-card {
+    height: 320px;
+  }
+}

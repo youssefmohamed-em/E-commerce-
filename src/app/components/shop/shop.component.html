@@ -1,0 +1,206 @@
+<section class="shop">
+
+  <div class="shop-header">
+
+    <span class="eyebrow">
+      OUR COLLECTION
+    </span>
+
+    <h1>
+      Shop
+    </h1>
+
+    <p>
+      Discover our latest collection and find
+      something perfect for you.
+    </p>
+
+  </div>
+
+
+  <div class="shop-toolbar">
+
+    <div class="search-box">
+
+      <input
+        #searchInput
+        type="text"
+        placeholder="Search products..."
+        [value]="searchTerm()"
+        (input)="onSearch(searchInput.value)"
+      />
+
+    </div>
+
+
+    <div class="sort-box">
+
+      <select
+        [value]="sortOption()"
+        (change)="setSort($any($event.target).value)"
+      >
+
+        <option value="featured">
+          Featured
+        </option>
+
+        <option value="price-low">
+          Price: Low to High
+        </option>
+
+        <option value="price-high">
+          Price: High to Low
+        </option>
+
+        <option value="name">
+          Name: A-Z
+        </option>
+
+      </select>
+
+    </div>
+
+  </div>
+
+
+  <div class="categories-filter">
+
+    @for (category of categories; track category) {
+
+      <button
+        type="button"
+        [class.active]="selectedCategory() === category"
+        (click)="setCategory(category)"
+      >
+        {{ category }}
+      </button>
+
+    }
+
+  </div>
+
+
+  <div class="products-info">
+
+    <span>
+      {{ filteredProducts().length }} products
+    </span>
+
+  </div>
+
+
+@if (loading()) {
+
+  <div class="loading-container">
+
+    <div class="spinner"></div>
+
+    <p>
+      Loading products...
+    </p>
+
+  </div>
+
+} @else if (filteredProducts().length > 0) {
+
+  <div class="products-grid">
+
+    @for (
+      product of filteredProducts();
+      track product.id
+    ) {
+
+      <article
+        class="product-card"
+        [class.out-of-stock]="product.stock <= 0"
+        (click)="openProduct(product)"
+        (keydown.enter)="openProduct(product)"
+        role="button"
+        tabindex="0"
+      >
+
+        <div class="product-image">
+
+          <img
+            [src]="product.image"
+            [alt]="product.name"
+          />
+
+        </div>
+
+        <div class="product-content">
+
+          <span class="category">
+            {{ product.category }}
+          </span>
+
+          <h3>
+            {{ product.name }}
+          </h3>
+
+          <div class="stock">
+
+            @if (product.stock > 0) {
+
+              <span>
+                {{ product.stock }} in stock
+              </span>
+
+            } @else {
+
+              <span>
+                Out of stock
+              </span>
+
+            }
+
+          </div>
+
+          <div class="price">
+
+            <span class="current-price">
+              ${{ product.price }}
+            </span>
+
+          </div>
+
+          <button
+            type="button"
+            class="add-cart-btn"
+            [disabled]="product.stock <= 0"
+            (click)="addToCart(product, $event)"
+          >
+
+            @if (product.stock > 0) {
+              Add to Cart
+            } @else {
+              Out of Stock
+            }
+
+          </button>
+
+        </div>
+
+      </article>
+
+    }
+
+  </div>
+
+} @else {
+
+  <div class="empty-state">
+
+    <h2>
+      No products found
+    </h2>
+
+    <p>
+      Try changing your search or category filter.
+    </p>
+
+  </div>
+
+}
+
+</section>

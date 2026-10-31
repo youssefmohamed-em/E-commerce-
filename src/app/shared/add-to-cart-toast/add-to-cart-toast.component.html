@@ -1,0 +1,34 @@
+<div class="toast-content" role="status" aria-live="polite">
+  <div class="toast-product-image" *ngIf="product?.image; else successIcon">
+    <img [src]="product?.image" [alt]="product?.name ?? ''" />
+  </div>
+
+  <ng-template #successIcon>
+    <div class="toast-success-icon" aria-hidden="true">
+      <lucide-icon [img]="CheckCircle2" [size]="22"></lucide-icon>
+    </div>
+  </ng-template>
+
+  <div class="toast-copy">
+    <p class="toast-title">Added to cart successfully</p>
+    <p class="toast-product-name">{{ product?.name ?? 'Your item' }}</p>
+  </div>
+
+  <button
+    type="button"
+    class="toast-close"
+    aria-label="Close notification"
+    (click)="close($event)"
+  >
+    <lucide-icon [img]="X" [size]="18"></lucide-icon>
+  </button>
+
+  <button type="button" class="view-cart-button" (click)="viewCart($event)">
+    View Cart
+    <lucide-icon [img]="ArrowRight" [size]="16"></lucide-icon>
+  </button>
+</div>
+
+<div class="toast-progress-track" *ngIf="options.progressBar">
+  <div class="toast-progress-bar" [style.width]="width() + '%'"></div>
+</div>

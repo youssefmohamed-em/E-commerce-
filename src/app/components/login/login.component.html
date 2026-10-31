@@ -1,0 +1,163 @@
+<section class="login-page">
+
+  <div class="login-container">
+
+    <!-- Brand -->
+    <div class="brand">
+      <a routerLink="/home">
+        SHOPLY
+      </a>
+    </div>
+
+    <!-- Header -->
+    <div class="login-header">
+
+      <span class="section-subtitle">
+        WELCOME BACK
+      </span>
+
+      <h1>
+        Sign in to your account
+      </h1>
+
+      <p>
+        Enter your details to continue shopping with us.
+      </p>
+
+    </div>
+
+    <!-- Form -->
+    <form
+      class="login-form"
+      (ngSubmit)="onSubmit()"
+    >
+
+      <!-- Email -->
+      <div class="form-group">
+
+        <label for="email">
+          Email Address
+        </label>
+
+        <input
+          id="email"
+          name="email"
+          type="email"
+          [(ngModel)]="email"
+          placeholder="Enter your email"
+          autocomplete="email"
+          required
+        />
+
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
+
+        <div class="label-row">
+
+          <label for="password">
+            Password
+          </label>
+
+          <a routerLink="/forgot-password">
+            Forgot password?
+          </a>
+
+        </div>
+
+        <div class="password-input">
+
+          <input
+            id="password"
+            name="password"
+            [type]="showPassword() ? 'text' : 'password'"
+            [(ngModel)]="password"
+            placeholder="Enter your password"
+            autocomplete="current-password"
+            required
+          />
+
+          <button
+            type="button"
+            class="password-toggle"
+            (click)="togglePassword()"
+            [attr.aria-label]="
+              showPassword()
+                ? 'Hide password'
+                : 'Show password'
+            "
+          >
+            {{ showPassword() ? 'Hide' : 'Show' }}
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- Remember -->
+      <div class="remember-row">
+
+        <label class="remember">
+
+          <input
+            type="checkbox"
+            name="rememberMe"
+            [(ngModel)]="rememberMe"
+          />
+
+          <span>
+            Remember me
+          </span>
+
+        </label>
+
+      </div>
+
+      <!-- Error -->
+      @if (loginError()) {
+
+        <div class="login-error">
+          {{ loginError() }}
+        </div>
+
+      }
+
+      <!-- Submit -->
+      <button
+        type="submit"
+        class="login-btn"
+        [disabled]="isLoading()"
+      >
+
+        @if (isLoading()) {
+          Signing In...
+        } @else {
+          Sign In
+        }
+
+      </button>
+
+    </form>
+
+    <!-- Divider -->
+    <div class="divider">
+      <span>OR</span>
+    </div>
+
+    <!-- Signup -->
+    <div class="signup">
+
+      <span>
+        Don't have an account?
+      </span>
+
+      <a routerLink="/signup">
+        Create account
+      </a>
+
+    </div>
+
+  </div>
+
+</section>

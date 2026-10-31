@@ -1,0 +1,380 @@
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 60px 24px;
+
+  background: var(--bg-primary);
+  color: var(--text-primary);
+
+  animation: fadeIn 0.6s ease forwards;
+}
+
+.login-container {
+  width: 100%;
+  max-width: 460px;
+}
+
+/* =========================
+   Brand
+========================= */
+
+.brand {
+  text-align: center;
+  margin-bottom: 55px;
+}
+
+.brand a {
+  color: var(--text-primary);
+  text-decoration: none;
+
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 5px;
+}
+
+/* =========================
+   Header
+========================= */
+
+.login-header {
+  text-align: center;
+}
+
+.section-subtitle {
+  display: block;
+
+  margin-bottom: 14px;
+
+  color: var(--text-secondary);
+
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+}
+
+.login-header h1 {
+  margin: 0;
+
+  color: var(--text-primary);
+
+  font-size: clamp(30px, 5vw, 40px);
+  line-height: 1.15;
+  font-weight: 700;
+}
+
+.login-header p {
+  max-width: 380px;
+
+  margin: 16px auto 0;
+
+  color: var(--text-secondary);
+
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* =========================
+   Form
+========================= */
+
+.login-form {
+  margin-top: 40px;
+}
+
+.form-group {
+  margin-bottom: 22px;
+}
+
+.form-group label {
+  display: block;
+
+  margin-bottom: 9px;
+
+  color: var(--text-primary);
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.form-group input {
+  width: 100%;
+  height: 52px;
+
+  padding: 0 16px;
+
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+
+  outline: none;
+
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+
+  font-family: inherit;
+  font-size: 14px;
+
+  transition:
+    border-color 0.25s ease,
+    background-color 0.25s ease,
+    box-shadow 0.25s ease;
+
+  box-sizing: border-box;
+}
+
+.form-group input::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.7;
+}
+
+.form-group input:focus {
+  border-color: var(--text-primary);
+
+  box-shadow:
+    0 0 0 3px
+    color-mix(
+      in srgb,
+      var(--text-primary) 8%,
+      transparent
+    );
+}
+
+/* =========================
+   Label Row
+========================= */
+
+.label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.label-row a {
+  color: var(--text-secondary);
+
+  font-size: 12px;
+  text-decoration: none;
+
+  transition: color 0.2s ease;
+}
+
+.label-row a:hover {
+  color: var(--text-primary);
+}
+
+/* =========================
+   Password
+========================= */
+
+.password-input {
+  position: relative;
+}
+
+.password-input input {
+  padding-right: 70px;
+}
+
+.password-toggle {
+  position: absolute;
+
+  top: 50%;
+  right: 14px;
+
+  transform: translateY(-50%);
+
+  border: none;
+
+  background: transparent;
+  color: var(--text-secondary);
+
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: color 0.2s ease;
+}
+
+.password-toggle:hover {
+  color: var(--text-primary);
+}
+
+/* =========================
+   Remember
+========================= */
+
+.remember-row {
+  margin-top: 4px;
+}
+
+.remember {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+
+  color: var(--text-secondary);
+
+  font-size: 13px;
+
+  cursor: pointer;
+}
+
+.remember input {
+  width: 15px;
+  height: 15px;
+
+  margin: 0;
+
+  accent-color: var(--text-primary);
+
+  cursor: pointer;
+}
+
+/* =========================
+   Login Button
+========================= */
+
+.login-btn {
+  width: 100%;
+  height: 54px;
+
+  margin-top: 25px;
+
+  border: none;
+  border-radius: 6px;
+
+  background: var(--text-primary);
+  color: var(--bg-primary);
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+.login-btn:hover {
+  opacity: 0.85;
+}
+
+.login-btn:active {
+  transform: scale(0.98);
+}
+
+/* =========================
+   Divider
+========================= */
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  margin: 35px 0;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+
+  flex: 1;
+
+  height: 1px;
+
+  background: var(--border-color);
+}
+
+.divider span {
+  color: var(--text-secondary);
+
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* =========================
+   Signup
+========================= */
+
+.signup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+
+  color: var(--text-secondary);
+
+  font-size: 13px;
+}
+
+.signup a {
+  color: var(--text-primary);
+
+  font-weight: 700;
+
+  text-decoration: none;
+}
+
+.signup a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   Animation
+========================= */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width: 500px) {
+
+  .login-page {
+    padding: 40px 20px;
+  }
+
+  .brand {
+    margin-bottom: 40px;
+  }
+
+  .login-header h1 {
+    font-size: 30px;
+  }
+
+  .login-header p {
+    font-size: 13px;
+  }
+
+}
+.login-error{
+  margin-top: 12px;
+  padding: 12px 14px;
+  border:1px solid #dc2626;
+  border-radius: 8px;
+  background: rgba(220,38,38,0.08);
+  color:#dc2626;
+  font-size: 14px;
+}
+.login-btn:disabled{
+  opacity: 0.6;
+  cursor: not-allowed;
+}

@@ -1,0 +1,19 @@
+{
+  "items": [
+    {
+      "productId": 1,
+      "categoryId": "accessories",
+      "quantity": 2
+    },
+    {
+      "productId": 3,
+      "categoryId": "fashion",
+      "quantity": 1
+    },
+    {
+      "productId": 2,
+      "categoryId": "sneakers",
+      "quantity": 1
+    }
+  ]
+}

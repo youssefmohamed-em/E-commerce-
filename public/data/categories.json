@@ -1,0 +1,59 @@
+{
+  "categories": [
+    {
+      "id": "fashion",
+      "number": "01",
+      "name": "Fashion",
+      "description": "Discover the latest fashion trends and timeless essentials.",
+      "image": "https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=1200&q=85",
+      "subcategories": [
+        "Men",
+        "Women",
+        "Jackets",
+        "T-Shirts",
+        "Pants"
+      ]
+    },
+    {
+      "id": "electronics",
+      "number": "02",
+      "name": "Electronics",
+      "description": "Discover smart technology designed for everyday life.",
+      "image": "https://images.unsplash.com/photo-1498049794561-7780e7231661?auto=format&fit=crop&w=1200&q=85",
+      "subcategories": [
+        "Phones",
+        "Laptops",
+        "Headphones",
+        "Cameras",
+        "Smart Watches"
+      ]
+    },
+    {
+      "id": "sneakers",
+      "number": "03",
+      "name": "Sneakers",
+      "description": "Step into something new with our latest sneaker collection.",
+      "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1200&q=85",
+      "subcategories": [
+        "Running",
+        "Lifestyle",
+        "Basketball",
+        "Training"
+      ]
+    },
+    {
+      "id": "accessories",
+      "number": "04",
+      "name": "Accessories",
+      "description": "Complete your style with the perfect accessories.",
+      "image": "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=1200&q=85",
+      "subcategories": [
+        "Watches",
+        "Bags",
+        "Wallets",
+        "Glasses",
+        "Jewelry"
+      ]
+    }
+  ]
+}

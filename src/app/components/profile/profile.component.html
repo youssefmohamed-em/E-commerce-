@@ -1,0 +1,224 @@
+<section class="profile-page">
+
+  <div class="profile-container">
+
+    <!-- Header -->
+    <div class="profile-header">
+
+      <span class="eyebrow">
+        MY ACCOUNT
+      </span>
+
+      <h1>
+        My Profile
+      </h1>
+
+      <p>
+        Manage your account and personal information.
+      </p>
+
+    </div>
+
+    <!-- Profile Card -->
+    <div class="profile-card">
+
+      <!-- User Info -->
+      <div class="profile-user">
+
+        <div class="avatar">
+          {{ currentUser()?.name?.charAt(0)?.toUpperCase() }}
+        </div>
+
+        <div class="user-info">
+
+          <h2>
+            {{ currentUser()?.name }}
+          </h2>
+
+          <p>
+            {{ currentUser()?.email }}
+          </p>
+
+        </div>
+
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Account Information -->
+      <div class="section-header">
+
+        <div>
+          <h2>
+            Account Information
+          </h2>
+
+          <p>
+            Your personal account details.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="information-grid">
+
+        <!-- Name -->
+        <div class="information-item">
+
+          <div class="information-icon">
+            <lucide-icon
+              [img]="UserRound"
+              [size]="19"
+            />
+          </div>
+
+          <div>
+            <span class="label">
+              Full Name
+            </span>
+
+            <strong>
+              {{ currentUser()?.name }}
+            </strong>
+          </div>
+
+        </div>
+
+        <!-- Email -->
+        <div class="information-item">
+
+          <div class="information-icon">
+            <lucide-icon
+              [img]="Mail"
+              [size]="19"
+            />
+          </div>
+
+          <div>
+            <span class="label">
+              Email Address
+            </span>
+
+            <strong>
+              {{ currentUser()?.email }}
+            </strong>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Quick Links -->
+      <div class="section-header">
+
+        <div>
+          <h2>
+            Quick Links
+          </h2>
+
+          <p>
+            Quickly access your shopping activity.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="quick-links">
+
+        <a
+          routerLink="/shop"
+          class="quick-link"
+        >
+
+          <lucide-icon
+            [img]="ShoppingBag"
+            [size]="20"
+          />
+
+          <div>
+            <strong>
+              Continue Shopping
+            </strong>
+
+            <span>
+              Browse our latest products
+            </span>
+          </div>
+
+        </a>
+
+        <a
+          routerLink="/wishlist"
+          class="quick-link"
+        >
+
+          <lucide-icon
+            [img]="Heart"
+            [size]="20"
+          />
+
+          <div>
+            <strong>
+              Wishlist
+            </strong>
+
+            <span>
+              View your favorite products
+            </span>
+          </div>
+
+        </a>
+
+        <a
+          routerLink="/settings"
+          class="quick-link"
+        >
+
+          <lucide-icon
+            [img]="Settings"
+            [size]="20"
+          />
+
+          <div>
+            <strong>
+              Account Settings
+            </strong>
+
+            <span>
+              Manage your account
+            </span>
+          </div>
+
+        </a>
+
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Logout -->
+      <div class="profile-footer">
+
+        <button
+          type="button"
+          class="logout-btn"
+          (click)="logout()"
+        >
+
+          <lucide-icon
+            [img]="LogOut"
+            [size]="18"
+          />
+
+          Logout
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>

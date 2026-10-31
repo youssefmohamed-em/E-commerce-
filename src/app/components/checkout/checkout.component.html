@@ -1,0 +1,452 @@
+<div class="checkout-page">
+
+  <div class="checkout-container">
+
+    <!-- Header -->
+    <div class="checkout-header">
+
+      <button
+        type="button"
+        class="back-button"
+        (click)="goBack()"
+      >
+        <lucide-icon
+          [img]="ArrowLeft"
+          [size]="18"
+        />
+
+        <span>Back to cart</span>
+      </button>
+
+      <div>
+
+        <h1>Checkout</h1>
+
+        <p>
+          Complete your order securely
+        </p>
+
+      </div>
+
+    </div>
+
+    @if (errorMessage()) {
+
+      <div class="error-message">
+        {{ errorMessage() }}
+      </div>
+
+    }
+
+    <div class="checkout-grid">
+
+      <!-- LEFT -->
+      <div class="checkout-main">
+
+        <form
+          [formGroup]="checkoutForm"
+          (ngSubmit)="submitOrder()"
+        >
+
+          <!-- Shipping -->
+          <section class="checkout-card">
+
+            <div class="section-title">
+
+              <div class="title-icon">
+                <lucide-icon
+                  [img]="ShieldCheck"
+                  [size]="20"
+                />
+              </div>
+
+              <div>
+                <h2>Shipping Information</h2>
+
+                <p>
+                  Where should we deliver your order?
+                </p>
+              </div>
+
+            </div>
+
+            <div class="form-grid">
+
+              <!-- Full Name -->
+              <div class="form-field full-width">
+
+                <label for="fullName">
+                  Full Name
+                </label>
+
+                <input
+                  id="fullName"
+                  type="text"
+                  formControlName="fullName"
+                  placeholder="Youssef Emam"
+                />
+
+                @if (
+                  fullNameControl.touched &&
+                  fullNameControl.invalid
+                ) {
+
+                  <span class="field-error">
+                    Please enter your full name.
+                  </span>
+
+                }
+
+              </div>
+
+              <!-- Phone -->
+              <div class="form-field">
+
+                <label for="phone">
+                  Phone Number
+                </label>
+
+                <input
+                  id="phone"
+                  type="tel"
+                  formControlName="phone"
+                  placeholder="01233456678"
+                />
+
+                @if (
+                  phoneControl.touched &&
+                  phoneControl.invalid
+                ) {
+
+                  <span class="field-error">
+                    Enter a valid Egyptian phone number.
+                  </span>
+
+                }
+
+              </div>
+
+              <!-- City -->
+              <div class="form-field">
+
+                <label for="city">
+                  City
+                </label>
+
+                <input
+                  id="city"
+                  type="text"
+                  formControlName="city"
+                  placeholder="Cairo"
+                />
+
+                @if (
+                  cityControl.touched &&
+                  cityControl.invalid
+                ) {
+
+                  <span class="field-error">
+                    City is required.
+                  </span>
+
+                }
+
+              </div>
+
+              <!-- Address -->
+              <div class="form-field full-width">
+
+                <label for="address">
+                  Address
+                </label>
+
+                <textarea
+                  id="address"
+                  rows="4"
+                  formControlName="address"
+                  placeholder="Nasr City, Cairo"
+                ></textarea>
+
+                @if (
+                  addressControl.touched &&
+                  addressControl.invalid
+                ) {
+
+                  <span class="field-error">
+                    Address is required.
+                  </span>
+
+                }
+
+              </div>
+
+            </div>
+
+          </section>
+
+          <!-- Payment -->
+          <section class="checkout-card">
+
+            <div class="section-title">
+
+              <div class="title-icon">
+                <lucide-icon
+                  [img]="CreditCard"
+                  [size]="20"
+                />
+              </div>
+
+              <div>
+                <h2>Payment Method</h2>
+
+                <p>
+                  Choose how you want to pay
+                </p>
+              </div>
+
+            </div>
+
+            <div class="payment-options">
+
+              <!-- Cash -->
+              <button
+                type="button"
+                class="payment-option"
+                [class.active]="
+                  checkoutForm.controls.paymentMethod.value ===
+                  'cash_on_delivery'
+                "
+                (click)="
+                  selectPaymentMethod(
+                    'cash_on_delivery'
+                  )
+                "
+              >
+
+                <div class="payment-radio">
+
+                  <span></span>
+
+                </div>
+
+                <div class="payment-icon">
+                  <lucide-icon
+                    [img]="Banknote"
+                    [size]="22"
+                  />
+                </div>
+
+                <div class="payment-content">
+
+                  <strong>
+                    Cash on Delivery
+                  </strong>
+
+                  <span>
+                    Pay when your order arrives
+                  </span>
+
+                </div>
+
+              </button>
+
+              <!-- Card -->
+              <button
+                type="button"
+                class="payment-option"
+                [class.active]="
+                  checkoutForm.controls.paymentMethod.value ===
+                  'credit_card'
+                "
+                (click)="
+                  selectPaymentMethod(
+                    'credit_card'
+                  )
+                "
+              >
+
+                <div class="payment-radio">
+
+                  <span></span>
+
+                </div>
+
+                <div class="payment-icon">
+                  <lucide-icon
+                    [img]="CreditCard"
+                    [size]="22"
+                  />
+                </div>
+
+                <div class="payment-content">
+
+                  <strong>
+                    Credit / Debit Card
+                  </strong>
+
+                  <span>
+                    Secure card payment through Cashflow
+                  </span>
+
+                </div>
+
+              </button>
+
+            </div>
+
+          </section>
+
+          <!-- Security -->
+          <div class="security-note">
+
+            <lucide-icon
+              [img]="LockKeyhole"
+              [size]="18"
+            />
+
+            <span>
+              Your payment information is securely processed.
+            </span>
+
+          </div>
+
+          <!-- Submit -->
+          <button
+            type="submit"
+            class="place-order-button"
+            [disabled]="loading()"
+          >
+
+            @if (loading()) {
+
+              <span class="spinner"></span>
+
+              <span>
+                Processing...
+              </span>
+
+            } @else {
+
+              <span>
+                Place Order
+              </span>
+
+            }
+
+          </button>
+
+        </form>
+
+      </div>
+
+      <!-- RIGHT -->
+      <aside class="order-summary">
+
+        <div class="summary-card">
+
+          <h2>
+            Order Summary
+          </h2>
+
+          <div class="summary-items">
+
+            @for (
+              item of cartItems();
+              track item.productId + '-' + item.categoryId
+            ) {
+
+              <div class="summary-item">
+
+                <img
+                  [src]="item.product.image"
+                  [alt]="item.product.name"
+                />
+
+                <div class="summary-item-content">
+
+                  <strong>
+                    {{ item.product.name }}
+                  </strong>
+
+                  <span>
+                    Qty: {{ item.quantity }}
+                  </span>
+
+                </div>
+
+                <span class="summary-price">
+                  {{
+                    item.product.price *
+                    item.quantity
+                  | number:'1.2-2'
+                  }}
+                  EGP
+                </span>
+
+              </div>
+
+            }
+
+          </div>
+
+          <div class="summary-divider"></div>
+
+          <div class="summary-row">
+
+            <span>
+              Subtotal
+            </span>
+
+            <strong>
+              {{
+                subtotal()
+                | number:'1.2-2'
+              }}
+              EGP
+            </strong>
+
+          </div>
+
+          <div class="summary-row">
+
+            <span>
+              Shipping
+            </span>
+
+            <strong>
+              {{
+                shippingCost()
+                | number:'1.2-2'
+              }}
+              EGP
+            </strong>
+
+          </div>
+
+          <div class="summary-divider"></div>
+
+          <div class="summary-total">
+
+            <span>
+              Total
+            </span>
+
+            <strong>
+              {{
+                total()
+                | number:'1.2-2'
+              }}
+              EGP
+            </strong>
+
+          </div>
+
+        </div>
+
+      </aside>
+
+    </div>
+
+  </div>
+
+</div>

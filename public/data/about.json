@@ -1,0 +1,115 @@
+
+{
+"hero" :{
+"label": "About Shoply",
+"title": "Shopping Made",
+"highlight": "Simple & Beautiful.",
+"description": "We believe shopping should be more than just buying products. It should be a simple, enjoyable, and inspiring experience.",
+"image": "/images/about/about-hero.jpg",
+"cardTitle": "Shoply",
+"cardDescription": "Everything you love, in one place.",
+"qualityTitle": "Quality First",
+"qualityDescription": "Products we love",
+"customerTitle": "Made For You",
+"customerDescription": "Simple shopping"
+},
+
+"story": {
+"label": "Our Story",
+"title": "More Than Just",
+"highlight": "Shopping.",
+"paragraphs": [
+"Shoply was created with one simple idea: make online shopping easier, cleaner, and more enjoyable.",
+"We bring together carefully selected products across different categories, giving you a convenient place to discover things you genuinely love.",
+"From fashion and sneakers to electronics and accessories, our goal is to create an experience that feels effortless from discovery to checkout."
+],
+"image": "/images/about/our-story.jpg",
+"highlightTitle": "Built Around You",
+"highlightDescription": "Every part of Shoply is designed with our customers in mind."
+},
+
+"mission": {
+"label": "Our Mission",
+"title": "Making Every",
+"highlight": "Shopping Journey",
+"ending": "Better.",
+"description": "We focus on quality, simplicity, and creating an experience that makes online shopping something you actually enjoy.",
+"items": [
+{
+"title": "Curated Products",
+"description": "We focus on bringing you products that combine quality, style, and value.",
+"icon": "Sparkles",
+"image": "/images/about/mission-quality.jpg"
+},
+{
+"title": "Trusted Experience",
+"description": "We aim to make every step of your shopping journey simple, reliable, and secure.",
+"icon": "ShieldCheck",
+"image": "/images/about/mission-trust.jpg"
+},
+{
+"title": "Fast & Convenient",
+"description": "From finding the right product to getting it delivered, convenience is always part of the experience.",
+"icon": "Truck",
+"image": "/images/about/mission-fast.jpg"
+},
+{
+"title": "Customer First",
+"description": "Our customers are at the heart of everything we build and every decision we make.",
+"icon": "Users",
+"image": "/images/about/mission-customer.jpg"
+}
+]
+},
+
+"stats": [
+{
+"value": "10K+",
+"label": "Happy Customers"
+},
+{
+"value": "500+",
+"label": "Products"
+},
+{
+"value": "20+",
+"label": "Categories"
+},
+{
+"value": "99%",
+"label": "Customer Satisfaction"
+}
+],
+
+"whyShoply": {
+"label": "Why Shoply?",
+"title": "Everything You Need.",
+"highlight": "One Simple Place.",
+"description": "We want Shoply to feel different from traditional online stores. Less complicated. More intuitive. More enjoyable.",
+"items": [
+{
+"title": "Secure Shopping",
+"description": "Your shopping experience comes first.",
+"icon": "ShieldCheck"
+},
+{
+"title": "Modern Experience",
+"description": "Clean, simple, and easy to navigate.",
+"icon": "Sparkles"
+},
+{
+"title": "Customer Focused",
+"description": "Built around what shoppers actually need.",
+"icon": "Heart"
+}
+]
+},
+
+"cta": {
+"label": "Start Shopping",
+"title": "Ready To Find",
+"highlight": "Something You Love?",
+"description": "Explore our collection and discover your next favorite product.",
+"buttonText": "Explore Shop"
+}
+}
